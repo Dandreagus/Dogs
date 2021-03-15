@@ -1,5 +1,21 @@
 .App {
   text-align: center;
+  
+}
+
+.ingresar {
+  width: 30rem;
+  height: 2rem;
+  font-size: large;
+  border: none;
+  color: maroon;
+  border-radius: 1rem;
+  margin-top: 25rem;
+}
+.ingresar:hover{
+  width: 35rem;
+  
+  transition: width 2s
 }
 
 .App-logo {

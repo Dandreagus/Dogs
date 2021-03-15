@@ -1,0 +1,36 @@
+.container {
+    display: flex;
+    justify-content: center;
+    margin-top: 2rem;
+}
+.search {
+    height: 2rem;
+    width: 15rem;
+    border: 1px solid maroon;
+    border-radius: 5px;
+}
+.race {
+    position: absolute;
+    right: 5%;
+    top: 4%;
+    justify-content: space-evenly;
+}
+.submitSearch {
+    width: 4rem;
+    height: 2.25rem;
+    border-radius: 5px;
+    border: 1px solid black;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color:#FFEFD5;
+    cursor: pointer;
+    background: #00B4CC;
+}
+.submitSearch:hover{
+  border: 2px solid black
+}
+.dogs {
+    display: flex;
+    flex-direction: row;
+    margin-top: 10rem;
+    
+}
