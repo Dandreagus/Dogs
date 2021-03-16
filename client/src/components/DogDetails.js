@@ -11,7 +11,6 @@ const DogDetails = () => {
     async function callApi() {
       const res = await axios.get(`http://localhost:3001/dogs/${url.id}`);
       setdetails(res.data);
-      console.log(res.data);
     }
     callApi();
   }, [url]);
@@ -19,16 +18,26 @@ const DogDetails = () => {
   return (
     <div className={styles.main}>
       <div className={styles.container}>
-        {details.map((e) => (
-          <div className={styles.rela}>
-            <img className={styles.image} src={e.image.url}></img>
-            <h1>{e.name}</h1>
-            <p>{e.temperament}</p>
-            <p>{e.life_span}</p>
-            <p>Peso: {e.weight.metric}</p>
-            <p>Altura: {e.height.metric}</p>
-          </div>
-        ))}
+        {url.id.length < 4
+          ? details.map((e) => (
+              <div key={e.name} className={styles.rela}>
+                <h1>{e.name}</h1>
+                <p>{e.temperament}</p>
+                <p>{e.life_span}</p>
+                <p>Peso: {e.weight}</p>
+                <p>Altura: {e.height}</p>
+              </div>
+            ))
+          : details.map((e) => (
+              <div key={e.name} className={styles.rela}>
+                <h1>{e.name}</h1>
+                <p>Años de vida: {e.añosDeVida}</p>
+                <p>Peso minimo: {e.weight_minimo}</p>
+                <p>Peso maximo: {e.weight_maximo}</p>
+                <p>Altura minima: {e.height_minimo}</p>
+                <p>Altura maxima: {e.height_maximo}</p>
+              </div>
+            ))}
       </div>
       <Link to="/dogs">Volver</Link>
     </div>
@@ -36,3 +45,4 @@ const DogDetails = () => {
 };
 
 export default DogDetails;
+// <img className={styles.image} src={e.image.url}></img>

@@ -33,6 +33,7 @@ module.exports = (sequelize) => {
 
     añosDeVida: {
       type: DataTypes.INTEGER,
+      allowNull: false,
     },
   });
 };

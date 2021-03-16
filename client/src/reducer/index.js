@@ -2,8 +2,17 @@ const initialState = [];
 
 const Reducer = (state = initialState, action) => {
   switch (action.type) {
-    case "Race": {
-      return "hola";
+    case "INITIAL": {
+      return (state = action.payload);
+    }
+    case "SEARCH": {
+      return (state = action.payload);
+    }
+    case "CREADA": {
+      return (state = action.payload.filter((e) => typeof e.id != "number"));
+    }
+    case "EXISTENTE": {
+      return (state = action.payload.filter((e) => typeof e.id === "number"));
     }
 
     default:

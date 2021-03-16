@@ -4,28 +4,25 @@ const dogs = express.Router();
 const { Dog, Category } = require("../db.js");
 
 dogs.get("/", async (req, res) => {
-  var name = req.query.name;
+  var name = req.query.name; //parametro a buscar
   var responde = await axios("https://api.thedogapi.com/v1/breeds");
   responde = responde.data;
-
+  const dogCreate = await Dog.findAll({
+    include: Category,
+  });
+  dogCreate.map(function (e) {
+    //Agrega solo si la raza no existe
+    const buscar = responde.find((i) => i.name === e.name);
+    buscar ? null : responde.push(e);
+  });
   if (!name) {
-    // si no me da un name
-    const eight = await responde.filter((x) => x.id < 9);
-    const dateDogs = await eight.reduce(
-      (acc, e) => [
-        ...acc,
-        { name: e.name, image: e.image, temperament: e.temperament, id: e.id },
-      ],
-      []
-    );
-    res.json(dateDogs);
+    return res.json(responde);
   } else {
-    //busca
     const arr = [];
     responde.map((e) =>
       e.name.includes(name) && arr.length < 9 ? arr.push(e) : undefined
     );
-    res.json(arr);
+    return res.json(arr);
   }
 });
 
@@ -42,13 +39,14 @@ dogs.get("/:id", async (req, res) => {
             name: e.name,
             image: e.image,
             temperament: e.temperament,
-            height: e.height,
+            height: e.height.metric,
             life_span: e.life_span,
-            weight: e.weight,
+            weight: e.weight.metric,
           },
         ],
         []
       );
+
     if (api.length > 0) {
       return res.json(api);
     } else {
@@ -56,7 +54,7 @@ dogs.get("/:id", async (req, res) => {
         const DbDog = await Dog.findByPk(id, {
           include: Category,
         });
-        res.json(DbDog);
+        res.json([DbDog]);
       } catch (error) {
         res.send(404);
       }

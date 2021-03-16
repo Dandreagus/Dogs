@@ -3,6 +3,7 @@ const dog = express.Router();
 const { Dog } = require("../db.js");
 
 dog.post("/", async (req, res) => {
+  console.log(req.body.name);
   const {
     name,
     altura_max,
@@ -13,10 +14,10 @@ dog.post("/", async (req, res) => {
   } = req.body;
   const creado = await Dog.create({
     name: name,
-    weight_minimo: altura_max,
-    weight_maximo: altura_min,
-    height_minimo: peso_min,
-    height_maximo: peso_max,
+    weight_minimo: peso_min,
+    weight_maximo: peso_max,
+    height_minimo: altura_min,
+    height_maximo: altura_max,
     añosDeVida: años_vida,
   });
   await creado.setCategories([1, 5, 9]);

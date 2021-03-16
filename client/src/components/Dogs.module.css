@@ -2,6 +2,7 @@
     display: flex;
     justify-content: center;
     margin-top: 2rem;
+    position: relative;
 }
 .search {
     height: 2rem;
@@ -33,4 +34,8 @@
     flex-direction: row;
     margin-top: 10rem;
     
+}
+.razas {
+    position: absolute;
+    left: 5%;
 }

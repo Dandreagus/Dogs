@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 const Index = () => {
   return (
     <div className="App">
-      <h1>Henry Dogs</h1>
+      <h1>The House Of Dogs </h1>
       <Link to="/dogs">
         <button className="ingresar">Ingresar</button>
       </Link>
