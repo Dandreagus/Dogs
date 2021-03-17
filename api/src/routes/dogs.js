@@ -6,7 +6,25 @@ const { Dog, Category } = require("../db.js");
 dogs.get("/", async (req, res) => {
   var name = req.query.name; //parametro a buscar
   var responde = await axios("https://api.thedogapi.com/v1/breeds");
-  responde = responde.data;
+  responde = responde.data
+    //modificamos el array
+    .reduce(
+      (acc, e) => [
+        ...acc,
+        {
+          id: e.id,
+          name: e.name,
+          image: e.image,
+          temperament: e.temperament,
+          height_minimo: parseInt(e.height.metric),
+          life_span: e.life_span,
+          weight_minimo: parseInt(e.weight.metric),
+          weight_maximo: e.weight.metric,
+        },
+      ],
+      []
+    );
+
   const dogCreate = await Dog.findAll({
     include: Category,
   });
@@ -15,6 +33,7 @@ dogs.get("/", async (req, res) => {
     const buscar = responde.find((i) => i.name === e.name);
     buscar ? null : responde.push(e);
   });
+
   if (!name) {
     return res.json(responde);
   } else {
@@ -22,7 +41,7 @@ dogs.get("/", async (req, res) => {
     responde.map((e) =>
       e.name.includes(name) && arr.length < 9 ? arr.push(e) : undefined
     );
-    return res.json(arr);
+    arr.length === 0 ? res.json([]) : res.json(arr);
   }
 });
 

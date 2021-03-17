@@ -11,6 +11,7 @@ dog.post("/", async (req, res) => {
     peso_max,
     peso_min,
     años_vida,
+    indice,
   } = req.body;
   const creado = await Dog.create({
     name: name,
@@ -20,7 +21,7 @@ dog.post("/", async (req, res) => {
     height_maximo: altura_max,
     añosDeVida: años_vida,
   });
-  await creado.setCategories([1, 5, 9]);
+  await creado.setCategories(indice);
   res.json(creado);
 });
 
