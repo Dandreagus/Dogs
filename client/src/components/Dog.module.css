@@ -1,21 +1,37 @@
-.container{
-    border: 1px solid black;
-    text-align: center;
-    height: 25rem;
-    background-color: white;
-    position: relative;
+.container {
+  border: 1px solid black;
+  text-align: center;
+  height: 25rem;
+  background: rgb(193, 200, 203);
+  background: linear-gradient(
+    90deg,
+    rgba(193, 200, 203, 1) 58%,
+    rgba(168, 168, 168, 1) 97%
+  );
+  position: relative;
+  width: 14.8rem;
+  padding-bottom: 20px;
 }
 
-.image{
-    width: 12rem;
-    height: 15rem;
+.image {
+  height: 15rem;
+  width: 10rem;
 }
 h1 {
- font-size: 1rem;
+  font-size: 1rem;
 }
 .link {
-    position: absolute;
-    bottom: 1%;
-    left: 35%;
+  position: absolute;
+  bottom: 1%;
+  left: 32%;
+}
+.detalles {
+  font-family: cursive;
+}
 
+:placeholder-shown {
+  color: maroon;
+}
+::placeholder {
+  text-align: center;
 }

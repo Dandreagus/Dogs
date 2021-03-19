@@ -11,6 +11,7 @@ const DogDetails = () => {
     async function callApi() {
       const res = await axios.get(`http://localhost:3001/dogs/${url.id}`);
       setdetails(res.data);
+      console.log(res.data);
     }
     callApi();
   }, [url]);
@@ -22,6 +23,7 @@ const DogDetails = () => {
           ? details.map((e) => (
               <div key={e.name} className={styles.rela}>
                 <h1>{e.name}</h1>
+                <img alt="dog" className={styles.image} src={e.image.url}></img>
                 <p>{e.temperament}</p>
                 <p>{e.life_span}</p>
                 <p>Peso: {e.weight}</p>
@@ -31,11 +33,20 @@ const DogDetails = () => {
           : details.map((e) => (
               <div key={e.name} className={styles.rela}>
                 <h1>{e.name}</h1>
+                <div className={styles.juntar}>
+                  {e.categories.map((
+                    b //mapeo categorias inside de details
+                  ) => (
+                    <p key={b.name}>{b.name}, </p>
+                  ))}
+                </div>
                 <p>Años de vida: {e.añosDeVida}</p>
-                <p>Peso minimo: {e.weight_minimo}</p>
-                <p>Peso maximo: {e.weight_maximo}</p>
-                <p>Altura minima: {e.height_minimo}</p>
-                <p>Altura maxima: {e.height_maximo}</p>
+                <p>
+                  Peso: {e.weight_minimo}-{e.weight_maximo}
+                </p>
+                <p>
+                  Altura: {e.height_minimo}-{e.height_maximo}
+                </p>
               </div>
             ))}
       </div>

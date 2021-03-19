@@ -23,3 +23,9 @@ export const Existente = (data) => {
     payload: data,
   };
 };
+export const Temperamento = (data) => {
+  return {
+    type: "TEMPERAMENTO",
+    payload: data,
+  };
+};

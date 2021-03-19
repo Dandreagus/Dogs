@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import styles from "./CreateDog.module.css";
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 
 const CreateDog = () => {
@@ -14,7 +14,19 @@ const CreateDog = () => {
     años_vida: "",
   });
 
+  const [categories, setcategories] = useState([]);
+  const [categoriasCargadas, setcategoriasCargadas] = useState([]);
+
   const { register, handleSubmit, errors } = useForm();
+
+  useEffect(() => {
+    //cargo categorias
+    async function tempe() {
+      const data = await axios.get("http://localhost:3001/temperament");
+      setcategories(data.data);
+    }
+    tempe();
+  }, []);
 
   const onHandleChange = (e) => {
     setchange({
@@ -33,20 +45,16 @@ const CreateDog = () => {
   } = change;
 
   const onHandleCLick = (e) => {
-    /* e.preventDefault();
-    if (!name) return alert("Ingresa un nombre");
-    if (!altura_max) return alert("Ingresa una altura maxima valida");
-    if (!altura_min) return alert("Ingresa una altura minima valida");
-    if (!peso_max) return alert("Ingresa un peso maximo");
-    if (!peso_min) return alert("Ingresa un peso minimo valido");
-    if (!años_vida) return alert("Ingrese años de vida"); */
+    const indice = categoriasCargadas.map((e) => e.id);
     axios.post("http://localhost:3001/dog", {
+      //post al back
       name,
       altura_max,
       altura_min,
       peso_max,
       peso_min,
       años_vida,
+      indice,
     });
     setchange({
       name: "",
@@ -59,12 +67,36 @@ const CreateDog = () => {
     return alert("Raza creada con exito");
   };
 
+  //categorias cargadas para este perro
+  const handleCategorias = (e) => {
+    const name = categories.filter((a, i) => i === e.target.value - 1);
+    setcategoriasCargadas([
+      ...categoriasCargadas,
+      { id: e.target.value, name: name[0] },
+    ]);
+    categoriasCargadas.map((b) =>
+      b.name === name[0]
+        ? null
+        : setcategoriasCargadas([
+            ...categoriasCargadas,
+            { id: e.target.value, name: name[0] },
+          ])
+    );
+  };
+
+  //elimino categoria
+  const deleteCategoria = (id) => {
+    console.log(id);
+    const eliminando = categoriasCargadas.filter((e) => e.id !== id);
+    setcategoriasCargadas(eliminando);
+  };
+
   return (
     <div>
       <div className={styles.container}>
         <form className={styles.form} onSubmit={handleSubmit(onHandleCLick)}>
-          <label for="name">Nombre</label>
           <input
+            placeholder="Nombre"
             type="text"
             name="name"
             id="name"
@@ -73,8 +105,9 @@ const CreateDog = () => {
             ref={register({ required: true })}
           ></input>
           {errors.name && <p className={styles.pError}>Ingrese un nombre</p>}
-          <label for="altura_min">Altura minima</label>
+
           <input
+            placeholder="Altura minima"
             id="altura_min"
             type="number"
             name="altura_min"
@@ -82,33 +115,39 @@ const CreateDog = () => {
             onChange={onHandleChange}
             ref={register({ required: true })}
           ></input>
+          {errors.altura_min && (
+            <p className={styles.pError}>Ingrese una Altura minima</p>
+          )}
 
-          <label for="altura_max">Altura maxima</label>
           <input
+            placeholder="Altura maxima"
             id="altura_max"
             type="number"
             name="altura_max"
             value={change.altura_max}
             onChange={onHandleChange}
           ></input>
-          <label for="peso_min">Peso minimo</label>
+
           <input
+            placeholder="Peso minimo"
             id="peso_min"
             type="number"
             name="peso_min"
             value={change.peso_min}
             onChange={onHandleChange}
           ></input>
-          <label for="peso_max">Peso maximo</label>
+
           <input
+            placeholder="Peso minimo"
             id="peso_min"
             type="number"
             name="peso_max"
             value={change.peso_max}
             onChange={onHandleChange}
           ></input>
-          <label for="años_vida">Años de Vida</label>
+
           <input
+            placeholder="Años de vida"
             id="años_vida"
             type="number"
             name="años_vida"
@@ -118,11 +157,41 @@ const CreateDog = () => {
           <button type="submit" className={styles.create}>
             Crear
           </button>
-          {!errors && <p>Creado con exito</p>}
+          <div className={styles.posCategoria}>
+            {categoriasCargadas //muestra las categorias seleccionadas
+              ? categoriasCargadas.map((e) => (
+                  <div className={styles.categoria}>
+                    <p>{e.name}</p>
+                    <button
+                      type="button"
+                      onClick={() => deleteCategoria(e.id)}
+                      className={styles.delete}
+                    >
+                      x
+                    </button>{" "}
+                  </div>
+                ))
+              : null}
+          </div>
+          <div className={styles.magia}>
+            <label>Temperamentos:</label>
+            <select onChange={handleCategorias}>
+              {categories.map((
+                e,
+                index //creando el select
+              ) => (
+                <option key={index} value={index + 1}>
+                  {e}
+                </option>
+              ))}
+            </select>
+          </div>
         </form>
       </div>
       <div className={styles.race}>
-        <Link to="/dogs">Volver</Link>
+        <Link className={styles.volver} to="/dogs">
+          Volver
+        </Link>
       </div>
     </div>
   );
