@@ -22,7 +22,7 @@ dog.post("/", async (req, res) => {
     añosDeVida: años_vida,
   });
   await creado.setCategories(indice);
-  res.json(creado);
+  res.json(creado).status(200);
 });
 
 module.exports = dog;

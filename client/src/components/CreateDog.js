@@ -138,8 +138,8 @@ const CreateDog = () => {
           ></input>
 
           <input
-            placeholder="Peso minimo"
-            id="peso_min"
+            placeholder="Peso maximo"
+            id="peso_max"
             type="number"
             name="peso_max"
             value={change.peso_max}

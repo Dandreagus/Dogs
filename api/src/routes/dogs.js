@@ -67,7 +67,7 @@ dogs.get("/:id", async (req, res) => {
       );
 
     if (api.length > 0) {
-      return res.json(api);
+      return res.json(api).status(200);
     } else {
       try {
         const DbDog = await Dog.findByPk(id, {
