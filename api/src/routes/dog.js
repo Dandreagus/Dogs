@@ -3,7 +3,6 @@ const dog = express.Router();
 const { Dog } = require("../db.js");
 
 dog.post("/", async (req, res) => {
-  console.log(req.body.name);
   const {
     name,
     altura_max,
