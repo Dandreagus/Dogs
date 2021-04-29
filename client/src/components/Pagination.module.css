@@ -1,19 +1,16 @@
 .page {
-  display: flex;
-  justify-content: flex-end;
   padding-right: 1rem;
-
+  display: flex;
   height: 10px;
+  justify-content: center;
+  align-items: center;
 }
 
-.caja {
-  display: inline-block;
-  float: right;
-}
 .link {
-  color: maroon;
+  color: #7c5b1f;
   float: left;
-  padding: 8px 6px;
+  padding: 8px 8px;
+
   text-decoration: none;
   background-color: whitesmoke;
   font-family: cursive;
@@ -21,4 +18,8 @@
 .link:active {
   background-color: teal;
   color: aqua;
+}
+.caja {
+  display: flex;
+  flex-direction: row;
 }

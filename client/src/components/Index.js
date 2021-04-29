@@ -1,12 +1,11 @@
-import "./Index.css";
+import styles from "./Index.module.css";
 import { Link } from "react-router-dom";
 
 const Index = () => {
   return (
-    <div className="App">
-      <h1>The House Of Dogs </h1>
+    <div className={styles.App}>
       <Link to="/dogs">
-        <button className="ingresar">Ingresar</button>
+        <button className={styles.ingresar}> Ingresar</button>
       </Link>
       /
     </div>

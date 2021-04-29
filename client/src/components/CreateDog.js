@@ -3,6 +3,8 @@ import styles from "./CreateDog.module.css";
 import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
+import { FiDelete } from "react-icons/fi";
+import { IconContext } from "react-icons";
 
 const CreateDog = () => {
   const [change, setchange] = useState({
@@ -64,6 +66,7 @@ const CreateDog = () => {
       peso_max: "",
       años_vida: "",
     });
+    setcategoriasCargadas([]);
     return alert("Raza creada con exito");
   };
 
@@ -160,15 +163,11 @@ const CreateDog = () => {
           <div className={styles.posCategoria}>
             {categoriasCargadas //muestra las categorias seleccionadas
               ? categoriasCargadas.map((e) => (
-                  <div className={styles.categoria}>
-                    <p>{e.name}</p>
-                    <button
-                      type="button"
-                      onClick={() => deleteCategoria(e.id)}
-                      className={styles.delete}
-                    >
-                      x
-                    </button>{" "}
+                  <div key={e.name} className={styles.categoria}>
+                    <p className={styles.p}>{e.name}</p>
+                    <IconContext.Provider value={{ color: "maroon", size: 25 }}>
+                      <FiDelete onClick={() => deleteCategoria(e.id)} />
+                    </IconContext.Provider>
                   </div>
                 ))
               : null}

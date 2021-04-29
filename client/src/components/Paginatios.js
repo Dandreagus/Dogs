@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import styles from "./Pagination.module.css";
 
-const Pagination = ({ totalPost, maxPost, pagina }) => {
+const Pagination = ({ totalPost, maxPost, pagina, current }) => {
   const pages = [];
 
   for (let i = 1; i <= Math.ceil(totalPost / maxPost); i++) {
@@ -13,7 +13,12 @@ const Pagination = ({ totalPost, maxPost, pagina }) => {
       <ul className={styles.page}>
         {pages.map((page) => (
           <div key={page} className={styles.caja}>
-            <Link className={styles.link} onClick={() => pagina(page)}>
+            <Link
+              to="#!"
+              className={styles.link}
+              style={{ backgroundColor: page === current ? "maroon" : "white" }}
+              onClick={() => pagina(page)}
+            >
               {page}
             </Link>
           </div>

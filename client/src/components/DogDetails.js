@@ -3,18 +3,26 @@ import axios from "axios";
 import { useParams } from "react-router";
 import styles from "./DogDetails.module.css";
 import { Link } from "react-router-dom";
+import ReactLoading from "react-loading";
+
 const DogDetails = () => {
   const [details, setdetails] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   var url = useParams();
   useEffect(() => {
     async function callApi() {
       const res = await axios.get(`http://localhost:3001/dogs/${url.id}`);
       setdetails(res.data);
-      console.log(res.data);
+      setLoading(true);
     }
     callApi();
   }, [url]);
+
+  if (!loading)
+    return (
+      <ReactLoading className={styles.loading} type={"spin"} color="#fff" />
+    );
 
   return (
     <div className={styles.main}>
@@ -23,11 +31,11 @@ const DogDetails = () => {
           ? details.map((e) => (
               <div key={e.name} className={styles.rela}>
                 <h1>{e.name}</h1>
-                <img alt="dog" className={styles.image} src={e.image.url}></img>
                 <p>{e.temperament}</p>
-                <p>{e.life_span}</p>
+                <p>Años de vida: {e.life_span}</p>
                 <p>Peso: {e.weight}</p>
                 <p>Altura: {e.height}</p>
+                <img alt="dog" className={styles.image} src={e.image.url}></img>
               </div>
             ))
           : details.map((e) => (
@@ -50,10 +58,11 @@ const DogDetails = () => {
               </div>
             ))}
       </div>
-      <Link to="/dogs">Volver</Link>
+      <Link className={styles.volver} to="/dogs">
+        Volver
+      </Link>
     </div>
   );
 };
 
 export default DogDetails;
-// <img className={styles.image} src={e.image.url}></img>

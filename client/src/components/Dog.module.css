@@ -1,21 +1,22 @@
 .container {
   border: 1px solid black;
   text-align: center;
-  height: 25rem;
+  min-height: 25rem;
   background: rgb(193, 200, 203);
-  background: linear-gradient(
-    90deg,
-    rgba(193, 200, 203, 1) 58%,
-    rgba(168, 168, 168, 1) 97%
-  );
+  background: #ebe3e0;
+
   position: relative;
-  width: 14.8rem;
+  width: 13.6rem;
   padding-bottom: 20px;
+  margin-right: 10px;
+  margin-left: 10px;
+  border-radius: 10px;
 }
 
 .image {
   height: 15rem;
-  width: 10rem;
+  width: 100%;
+  border-radius: 6px;
 }
 h1 {
   font-size: 1rem;
@@ -34,4 +35,14 @@ h1 {
 }
 ::placeholder {
   text-align: center;
+}
+
+.temperamento {
+  color: #7c5b1f;
+  font-weight: 600;
+}
+
+.box {
+  margin-left: 10px;
+  margin-right: 10px;
 }

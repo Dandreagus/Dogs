@@ -14,7 +14,7 @@ const Dog = ({ name, temperamento, image, id, categories }) => {
       ) : (
         <div>
           <img className={styles.image} alt="dog" src={image.url}></img>
-          <p>{temperamento}</p>
+          <p className={styles.temperamento}>{temperamento}</p>
         </div>
       )}
       <div className={styles.link}>
