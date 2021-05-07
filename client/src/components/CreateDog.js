@@ -6,6 +6,7 @@ import { useForm } from "react-hook-form";
 import { FiDelete } from "react-icons/fi";
 import { IconContext } from "react-icons";
 import Swal from "sweetalert2";
+import { MenuItem, Select } from "@material-ui/core";
 
 const CreateDog = () => {
   const [change, setchange] = useState({
@@ -74,6 +75,7 @@ const CreateDog = () => {
     return Swal.fire("Raza creada con exito");
   };
 
+  console.log(categoriasCargadas);
   //categorias cargadas para este perro
   const handleCategorias = (e) => {
     const name = categories.filter((a, i) => i === e.target.value - 1);
@@ -161,34 +163,35 @@ const CreateDog = () => {
             value={change.años_vida}
             onChange={onHandleChange}
           ></input>
-          <button type="submit" className={styles.create}>
-            Crear
-          </button>
+
           <div className={styles.posCategoria}>
             {categoriasCargadas //muestra las categorias seleccionadas
               ? categoriasCargadas.map((e) => (
                   <div key={e.name} className={styles.categoria}>
-                    <p className={styles.p}>{e.name}</p>
                     <IconContext.Provider value={{ color: "maroon", size: 25 }}>
                       <FiDelete onClick={() => deleteCategoria(e.id)} />
                     </IconContext.Provider>
+                    <p className={styles.p}>{e.name}</p>
                   </div>
                 ))
               : null}
           </div>
           <div className={styles.magia}>
             <label>Temperamentos:</label>
-            <select onChange={handleCategorias}>
+            <Select onChange={handleCategorias}>
               {categories.map((
                 e,
                 index //creando el select
               ) => (
-                <option key={index} value={index + 1}>
+                <MenuItem key={index} value={index + 1}>
                   {e}
-                </option>
+                </MenuItem>
               ))}
-            </select>
+            </Select>
           </div>
+          <button type="submit" className={styles.create}>
+            Crear
+          </button>
         </form>
       </div>
       <div className={styles.race}>

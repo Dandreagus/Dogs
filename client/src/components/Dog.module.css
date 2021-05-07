@@ -1,15 +1,16 @@
 .container {
-  border: 1px solid #78281f;
+  box-shadow: 1px 1px 2px 1px #78281f;
   text-align: center;
-  min-height: 25rem;
+
   background: #fff;
   opacity: 0.9;
   position: relative;
-  width: 13.6rem;
+  width: 22rem;
   padding-bottom: 20px;
   margin-right: 10px;
   margin-left: 10px;
   border-radius: 10px;
+  height: 23rem;
 }
 
 .image {
@@ -18,20 +19,23 @@
   border-radius: 6px;
 }
 .container:hover {
+  box-shadow: 8px 8px #78281f;
   opacity: 1;
 }
 h1 {
-  font-size: 1rem;
+  font-size: 1.3rem;
+  font-family: "Itim", cursive;
 }
 .link {
   position: absolute;
   bottom: 1%;
-  left: 32%;
+  left: 40%;
 }
 .detalles {
   font-family: cursive;
   text-decoration: none;
   color: #78281f;
+  font-family: "Itim", cursive;
 }
 
 :placeholder-shown {
@@ -44,6 +48,7 @@ h1 {
 .temperamento {
   color: #7c5b1f;
   font-weight: 600;
+  font-family: "Itim", cursive;
 }
 
 .box {

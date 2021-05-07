@@ -34,7 +34,11 @@
 .dogs {
   display: flex;
   flex-direction: row;
-  margin-top: 10rem;
+  margin-top: 3%;
+  flex-wrap: wrap;
+  max-width: 80%;
+  justify-content: center;
+  margin: 0 auto;
 }
 .razas {
   margin-top: 1rem;
@@ -94,7 +98,7 @@ button {
   display: flex;
 }
 .test {
-  margin-left: auto;
+  margin: 0 auto;
 }
 .loading {
   margin-left: auto;

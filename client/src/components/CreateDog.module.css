@@ -18,9 +18,10 @@ input {
 }
 
 .create {
-  position: absolute;
-  bottom: 7%;
-  right: 8%;
+  margin-top: auto;
+  margin-left: 80%;
+  width: 20%;
+  margin-bottom: 3%;
 }
 
 .container {
@@ -45,8 +46,8 @@ input[type="number"]::-webkit-outer-spin-button {
 }
 .categoria {
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
 }
 .delete {
   background-color: red;
@@ -54,14 +55,17 @@ input[type="number"]::-webkit-outer-spin-button {
 }
 .posCategoria {
   display: flex;
-  width: 30rem;
-  justify-content: space-evenly;
+  padding: 4px;
   flex-wrap: wrap;
+  margin-left: 8px;
 }
 .magia {
   position: absolute;
   bottom: 5%;
   left: 5%;
+  display: flex;
+  flex-direction: column;
+  margin-left: 5%;
 }
 .volver {
   font-family: cursive;
@@ -76,6 +80,8 @@ input[type="number"]::-webkit-outer-spin-button {
 }
 .p {
   margin-right: 8px;
+  color: #78281f;
+  padding: 2px;
 }
 body {
   background-color: #ddd;

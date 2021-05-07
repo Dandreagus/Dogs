@@ -37,6 +37,7 @@
 }
 h1 {
   text-align: center;
+  font-family: "Itim", cursive;
 }
 .juntar {
   display: flex;
@@ -44,10 +45,10 @@ h1 {
 }
 label {
   color: maroon;
-  font-family: cursive;
+  font-family: "Itim", cursive;
 }
 .container p {
-  font-family: cursive;
+  font-family: "Itim", cursive;
   color: #7c5b1f;
 }
 .volver {
