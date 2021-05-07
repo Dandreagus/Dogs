@@ -8,6 +8,7 @@ import ReactLoading from "react-loading";
 const DogDetails = () => {
   const [details, setdetails] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [modal, setModal] = useState(true);
 
   var url = useParams();
   useEffect(() => {
@@ -25,7 +26,7 @@ const DogDetails = () => {
     );
 
   return (
-    <div className={styles.main}>
+    <div className={styles.tv}>
       <div className={styles.container}>
         {url.id.length < 4
           ? details.map((e) => (
@@ -35,6 +36,7 @@ const DogDetails = () => {
                 <p>Años de vida: {e.life_span}</p>
                 <p>Peso: {e.weight}</p>
                 <p>Altura: {e.height}</p>
+
                 <img alt="dog" className={styles.image} src={e.image.url}></img>
               </div>
             ))
@@ -57,10 +59,10 @@ const DogDetails = () => {
                 </p>
               </div>
             ))}
+        <Link className={styles.volver} to="/dogs">
+          Volver
+        </Link>
       </div>
-      <Link className={styles.volver} to="/dogs">
-        Volver
-      </Link>
     </div>
   );
 };

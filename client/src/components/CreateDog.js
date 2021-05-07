@@ -5,6 +5,7 @@ import React, { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { FiDelete } from "react-icons/fi";
 import { IconContext } from "react-icons";
+import Swal from "sweetalert2";
 
 const CreateDog = () => {
   const [change, setchange] = useState({
@@ -24,8 +25,9 @@ const CreateDog = () => {
   useEffect(() => {
     //cargo categorias
     async function tempe() {
-      const data = await axios.get("http://localhost:3001/temperament");
-      setcategories(data.data);
+      //const data = await axios.get("http://localhost:3001/temperament");
+      const temperaments = JSON.parse(localStorage.getItem("temperaments"));
+      setcategories(temperaments);
     }
     tempe();
   }, []);
@@ -46,9 +48,9 @@ const CreateDog = () => {
     años_vida,
   } = change;
 
-  const onHandleCLick = (e) => {
+  const onHandleCLick = async (e) => {
     const indice = categoriasCargadas.map((e) => e.id);
-    axios.post("http://localhost:3001/dog", {
+    await axios.post("http://localhost:3001/dog", {
       //post al back
       name,
       altura_max,
@@ -67,7 +69,9 @@ const CreateDog = () => {
       años_vida: "",
     });
     setcategoriasCargadas([]);
-    return alert("Raza creada con exito");
+    const dogsData = await axios.get("http://localhost:3001/dogs");
+    localStorage.setItem("dogs", JSON.stringify(dogsData.data));
+    return Swal.fire("Raza creada con exito");
   };
 
   //categorias cargadas para este perro
@@ -96,7 +100,7 @@ const CreateDog = () => {
 
   return (
     <div>
-      <div className={styles.container}>
+      <div className={styles.tv}>
         <form className={styles.form} onSubmit={handleSubmit(onHandleCLick)}>
           <input
             placeholder="Nombre"

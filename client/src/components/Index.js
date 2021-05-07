@@ -7,7 +7,6 @@ const Index = () => {
       <Link to="/dogs">
         <button className={styles.ingresar}> Ingresar</button>
       </Link>
-      /
     </div>
   );
 };

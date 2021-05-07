@@ -1,9 +1,9 @@
-export const First = (data) => {
+export function First(dogsData) {
   return {
     type: "INITIAL",
-    payload: data,
+    payload: dogsData,
   };
-};
+}
 
 export const Search = (data) => {
   return {

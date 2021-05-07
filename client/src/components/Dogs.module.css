@@ -42,7 +42,7 @@
 
 button {
   margin-left: 1rem;
-  background-color: maroon;
+  background-color: #78281f;
   border: none;
   color: white;
   padding: 8px 10px;
@@ -53,15 +53,22 @@ button {
   cursor: pointer;
   height: 3rem;
 }
+.buttonMaterial {
+  background-color: #78281f;
+  color: white;
+}
 
 .divSelect {
   display: flex;
   flex-direction: row;
 }
 .eleccion {
-  background: wheat;
-  color: maroon;
+  background: #fff;
+  color: #78281f;
   font-family: cursive;
+}
+.eleccion > option {
+  color: red;
 }
 .redirec {
   text-decoration: none;
@@ -93,7 +100,4 @@ button {
   margin-left: auto;
   margin-right: auto;
   margin-top: 22rem;
-}
-body {
-  background-image: none;
 }

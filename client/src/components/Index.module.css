@@ -1,9 +1,11 @@
 .App {
   text-align: center;
   width: 100%;
+  background-image: url("./image/dogBack.png");
+  height: 100vh;
 }
 body {
-  background-image: url("./image/dogBack.png");
+  background-color: #fff;
 }
 .ingresar {
   width: 30rem;

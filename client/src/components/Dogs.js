@@ -14,17 +14,21 @@ import { useDispatch, useSelector } from "react-redux";
 import Pagination from "./Paginatios";
 import ResultOff from "./ResultOff";
 import { FaSearch } from "react-icons/fa";
-import ReactLoading from "react-loading";
+
+import { Button, MenuItem, Select } from "@material-ui/core";
+import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 
 const Dogs = () => {
   const [input, setInput] = useState({
     race: "",
   });
 
+  const [dogs, setDogs] = useState([]);
   const [maxPost] = useState(8);
   const [currentPage, setcurrentPage] = useState(1);
   const [temperamentos, settemperamentos] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [select, setSelect] = useState("ASCENDENTE");
 
   //Redux
   const dispatch = useDispatch();
@@ -45,18 +49,16 @@ const Dogs = () => {
     dispatch(Search(data.data));
   };
   const onClickCreada = async () => {
-    const data = await axios.get(`http://localhost:3001/dogs`);
     setcurrentPage(1);
-    dispatch(Creada(data.data));
+    console.log(dogs);
+    dispatch(Creada(dogs));
   };
   const onClickExistente = async () => {
-    const data = await axios.get(`http://localhost:3001/dogs`);
-    dispatch(Existente(data.data));
+    dispatch(Existente(dogs));
   };
 
   const filtradoTemp = async (e) => {
-    const dogsData = await axios.get("http://localhost:3001/dogs");
-    dispatch(First(dogsData.data));
+    dispatch(First(dogs));
     setcurrentPage(1);
     dispatch(Temperamento(e));
   };
@@ -65,19 +67,35 @@ const Dogs = () => {
     x.name.toLowerCase().includes(input.race.toLowerCase())
   );
 
+  const onSelect = (e) => {
+    dispatch({ type: e.target.value });
+    setSelect(e.target.value);
+  };
+
   useEffect(() => {
     async function fetchData() {
-      const dogsData = await axios.get("http://localhost:3001/dogs");
+      const dogsStorag = JSON.parse(localStorage.getItem("dogs"));
+
+      if (dogsStorag.length === 0) {
+        const dogsData = await axios.get("http://localhost:3001/dogs");
+        dispatch(First(dogsData.data));
+        setDogs(dogsData.data);
+      } else {
+        setDogs(dogsStorag);
+      }
       const temperamentosData = await axios.get(
         "http://localhost:3001/temperament"
       );
-
-      dispatch(First(dogsData.data));
       settemperamentos(temperamentosData.data);
-      setLoading(true);
     }
     fetchData();
   }, [dispatch]);
+
+  useEffect(() => {
+    localStorage.setItem("dogs", JSON.stringify(dogs));
+    localStorage.setItem("temperaments", JSON.stringify(temperamentos));
+    dispatch(First(dogs));
+  }, [temperamentos]);
 
   const dogsTyping = input.race ? typing : miState;
 
@@ -88,45 +106,73 @@ const Dogs = () => {
 
   const pagina = (page) => setcurrentPage(page);
 
-  if (!loading)
+  /*   if (!loading)
     return (
       <ReactLoading className={styles.loading} type={"spin"} color="#fff" />
-    );
+    ); */
 
   return (
     <div>
       <div className={styles.container}>
         <div className={styles.razas}>
-          <button onClick={onClickExistente}>Raza Existente</button>
-          <button onClick={onClickCreada}>Raza Creada</button>
+          <Button
+            style={{
+              backgroundColor: "white",
+              color: "#78281f",
+              border: "1px solid #78281f",
+              marginTop: 10,
+            }}
+            onClick={onClickExistente}
+          >
+            Raza Existente
+          </Button>
+          <Button
+            style={{
+              marginLeft: 5,
+              backgroundColor: "white",
+              color: "#78281f",
+              border: "1px solid #78281f",
+              marginTop: 10,
+            }}
+            onClick={onClickCreada}
+          >
+            Raza Creada
+          </Button>
         </div>
         <div className={styles.divSelect}>
           <div className={styles.colums}>
             <label>Ordenar</label>
-            <select
+            <Select
+              value={select}
+              style={{ color: "#78281f" }}
               className={styles.eleccion}
-              onChange={(e) => dispatch({ type: e.target.value })}
+              onChange={(e) => onSelect(e)}
             >
               {/* ordenamiento*/}
-              <option value="ASCENDENTE">Ascendente</option>
-              <option value="DESCENDENTE">Descendente</option>
-              <option value="MENOR">Menor peso</option>
-              <option value="MAYOR">Mayor peso</option>
-            </select>
+              <MenuItem value="ASCENDENTE">Ascendente</MenuItem>
+              <MenuItem value="DESCENDENTE">Descendente</MenuItem>
+              <MenuItem value="MENOR">Menor peso</MenuItem>
+              <MenuItem value="MAYOR">Mayor peso</MenuItem>
+            </Select>
           </div>
           <div className={styles.colums}>
             <label>Filtrar por temperamentos</label>
-            <select
+            <Select
+              label="Seleccione un temperamento"
+              style={{ color: "#78281f" }}
               id="1"
               className={styles.eleccion}
               onChange={(e) => filtradoTemp(e.target.value)}
             >
+              <MenuItem disabled value="">
+                <em>Seleccione un temperamento</em>
+              </MenuItem>
               {temperamentos.map((e) => (
-                <option key={e} value={e}>
+                <MenuItem key={e} value={e}>
                   {e}
-                </option>
+                </MenuItem>
               ))}
-            </select>
+            </Select>
           </div>
         </div>
 
@@ -145,32 +191,47 @@ const Dogs = () => {
         </div>
         <div className={styles.race}>
           <Link className={styles.redirec} to="/dog">
-            Crear una nueva Raza
+            <Button
+              style={{
+                backgroundColor: "white",
+                color: "#78281f",
+                border: "1px solid #78281f",
+                marginTop: 10,
+              }}
+            >
+              Crear una nueva Raza
+            </Button>
           </Link>
 
           <Link className={styles.redirec} to="/">
-            Salir
+            <Button
+              style={{
+                backgroundColor: "white",
+                color: "#78281f",
+                border: "1px solid #78281f",
+                marginTop: 10,
+              }}
+            >
+              <ExitToAppIcon />
+              Salir
+            </Button>
           </Link>
         </div>
       </div>
       <div className={styles.dogs}>
-        {!dogsTyping.length ? (
-          <ResultOff />
-        ) : (
-          posts.map((
-            e //mapeo dogs
-          ) => (
-            <div key={e.name}>
-              <Dog
-                name={e.name}
-                image={e.image}
-                temperamento={e.temperament}
-                categories={e.categories}
-                id={e.id}
-              />
-            </div>
-          ))
-        )}
+        {posts.map((
+          e //mapeo dogs
+        ) => (
+          <div key={e.name}>
+            <Dog
+              name={e.name}
+              image={e.image}
+              temperamento={e.temperament}
+              categories={e.categories}
+              id={e.id}
+            />
+          </div>
+        ))}
       </div>
       <div className={styles.page}>
         <div className={styles.test}>
