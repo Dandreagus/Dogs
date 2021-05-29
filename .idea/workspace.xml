@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="9cbfd618-75b5-453e-b707-d20ea4adfbf2" name="Default Changelist" comment="v1">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/App.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,7 +39,18 @@
     <property name="nodejs_package_manager_path" value="npm" />
   </component>
   <component name="RunManager">
-    <configuration name="C:/Users/Gustavo/Desktop/FT10-PI-Dogs" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="C:/Users/Gustavo/Desktop/FT10-PI-Dogs" type="GradleRunConfiguration" factoryName="Gradle">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -57,11 +69,6 @@
       <DebugAllEnabled>false</DebugAllEnabled>
       <method v="2" />
     </configuration>
-    <recent_temporary>
-      <list>
-        <item itemvalue="Gradle.C:/Users/Gustavo/Desktop/FT10-PI-Dogs" />
-      </list>
-    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -72,7 +79,7 @@
       <option name="presentableId" value="Default" />
       <updated>1622322662111</updated>
       <workItem from="1622322665171" duration="4170000" />
-      <workItem from="1622327813897" duration="1008000" />
+      <workItem from="1622327813897" duration="2076000" />
     </task>
     <task id="LOCAL-00001" summary="testeid">
       <created>1622323326572</created>
