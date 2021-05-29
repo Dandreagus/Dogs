@@ -27,7 +27,7 @@ const CreateDog = () => {
   useEffect(() => {
     //cargo categorias
     async function tempe() {
-      //const data = await axios.get("http://localhost:3001/temperament");
+      //const a  data = await axios.get("http://localhost:3001/temperament");
       const temperaments = JSON.parse(localStorage.getItem("temperaments"));
       setcategories(temperaments);
     }
