@@ -21,6 +21,7 @@ const CreateDog = () => {
   const [categories, setcategories] = useState([]);
   const [categoriasCargadas, setcategoriasCargadas] = useState([]);
 
+
   const { register, handleSubmit, errors } = useForm();
 
   useEffect(() => {
@@ -105,64 +106,64 @@ const CreateDog = () => {
       <div className={styles.tv}>
         <form className={styles.form} onSubmit={handleSubmit(onHandleCLick)}>
           <input
-            placeholder="Nombre"
-            type="text"
-            name="name"
-            id="name"
-            value={change.name}
-            onChange={onHandleChange}
-            ref={register({ required: true })}
-          ></input>
+    placeholder="Nombre"
+    type="text"
+    name="name"
+    id="name"
+    value={change.name}
+    onChange={onHandleChange}
+    ref={register({required: true})}
+    />
           {errors.name && <p className={styles.pError}>Ingrese un nombre</p>}
 
           <input
-            placeholder="Altura minima"
-            id="altura_min"
-            type="number"
-            name="altura_min"
-            value={change.altura_min}
-            onChange={onHandleChange}
-            ref={register({ required: true })}
-          ></input>
+    placeholder="Altura minima"
+    id="altura_min"
+    type="number"
+    name="altura_min"
+    value={change.altura_min}
+    onChange={onHandleChange}
+    ref={register({required: true})}
+    />
           {errors.altura_min && (
             <p className={styles.pError}>Ingrese una Altura minima</p>
           )}
 
           <input
-            placeholder="Altura maxima"
-            id="altura_max"
-            type="number"
-            name="altura_max"
-            value={change.altura_max}
-            onChange={onHandleChange}
-          ></input>
+    placeholder="Altura maxima"
+    id="altura_max"
+    type="number"
+    name="altura_max"
+    value={change.altura_max}
+    onChange={onHandleChange}
+    />
 
           <input
-            placeholder="Peso minimo"
-            id="peso_min"
-            type="number"
-            name="peso_min"
-            value={change.peso_min}
-            onChange={onHandleChange}
-          ></input>
+    placeholder="Peso minimo"
+    id="peso_min"
+    type="number"
+    name="peso_min"
+    value={change.peso_min}
+    onChange={onHandleChange}
+    />
 
           <input
-            placeholder="Peso maximo"
-            id="peso_max"
-            type="number"
-            name="peso_max"
-            value={change.peso_max}
-            onChange={onHandleChange}
-          ></input>
+    placeholder="Peso maximo"
+    id="peso_max"
+    type="number"
+    name="peso_max"
+    value={change.peso_max}
+    onChange={onHandleChange}
+    />
 
           <input
-            placeholder="Años de vida"
-            id="años_vida"
-            type="number"
-            name="años_vida"
-            value={change.años_vida}
-            onChange={onHandleChange}
-          ></input>
+    placeholder="Años de vida"
+    id="años_vida"
+    type="number"
+    name="años_vida"
+    value={change.años_vida}
+    onChange={onHandleChange}
+    />
 
           <div className={styles.posCategoria}>
             {categoriasCargadas //muestra las categorias seleccionadas
@@ -200,6 +201,7 @@ const CreateDog = () => {
         </Link>
       </div>
     </div>
+
   );
 };
 
