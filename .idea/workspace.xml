@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="9cbfd618-75b5-453e-b707-d20ea4adfbf2" name="Default Changelist" comment="testeo" />
+    <list default="true" id="9cbfd618-75b5-453e-b707-d20ea4adfbf2" name="Default Changelist" comment="v1">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -9,7 +11,6 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-    <option name="UPDATE_TYPE" value="REBASE" />
   </component>
   <component name="GithubPullRequestsUISettings">
     <option name="selectedUrlAndAccountId">
@@ -71,6 +72,7 @@
       <option name="presentableId" value="Default" />
       <updated>1622322662111</updated>
       <workItem from="1622322665171" duration="4170000" />
+      <workItem from="1622327813897" duration="1008000" />
     </task>
     <task id="LOCAL-00001" summary="testeid">
       <created>1622323326572</created>
@@ -100,7 +102,14 @@
       <option name="project" value="LOCAL" />
       <updated>1622324855201</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="v1">
+      <created>1622327881752</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1622327881752</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -116,10 +125,12 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="testeid" />
     <MESSAGE value="testeo" />
-    <option name="LAST_COMMIT_MESSAGE" value="testeo" />
+    <MESSAGE value="v1" />
+    <option name="LAST_COMMIT_MESSAGE" value="v1" />
   </component>
 </project>
